@@ -1,0 +1,57 @@
+{% extends 'aplicacion/home.html' %}
+
+{% block titulo %}
+    <style>
+
+        .table thead th {
+            background-color: #FFD800; 
+            border: 1px solid black; 
+        }
+
+
+        .table td, .table th {
+            border: 1px solid black; 
+        }
+
+
+        .table tbody tr {
+            border-bottom: 1px solid black; 
+        }
+    </style>
+    <header class="masthead">
+        <div class="container">
+            <div class="masthead-heading text-uppercase">¡Encuentra lo que estes buscando!</div>
+            
+        </div>
+    </header>
+{% endblock titulo %}
+
+{% block contenido %}
+<h2>Resultados de Búsqueda</h2>
+<p>Buscando {{ tipo_operacion|title }} para '{{ tipo_propiedad }}'</p>
+
+{% if resultados %}
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Tipo de Propiedad</th>
+                <th>Metros Cuadrados</th>
+                <th>Precio</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for resultado in resultados %}
+            <tr>
+                <td>{{ resultado.tipo }}</td>
+                <td>{{ resultado.mt2 }} m²</td>
+                <td>${{ resultado.precio }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% else %}
+    <p>No se encontraron propiedades que coincidan con los criterios de búsqueda.</p>
+{% endif %}
+{% endblock contenido%}
+{% block servicios %}
+{% endblock servicios %}

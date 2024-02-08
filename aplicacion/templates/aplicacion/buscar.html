@@ -1,0 +1,60 @@
+{% extends 'aplicacion/home.html' %}
+
+{% block titulo %}
+<style>
+
+    form {
+        background-color: #f8f9fa; 
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        margin-bottom: 20px;
+    }
+
+    form label, form select, form input[type="text"], form input[type="submit"] {
+        display: block;
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+    form select, form input[type="text"] {
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+    }
+
+    form input[type="submit"] {
+        background-color: #FFD800;
+        color: white;
+        padding: 10px 15px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+
+    form input[type="submit"]:hover {
+        background-color: #333333;
+    }
+</style>
+    <header class="masthead">
+        <div class="container">
+            <div class="masthead-heading text-uppercase">¡Encuentra lo que estes buscando!</div>
+        
+        </div>
+    </header>
+{% endblock titulo %}
+{% block contenido %}
+<form action ="{% url 'buscarOportunidad' %}" method='get'>
+    {% csrf_token %}
+    <label for="tipo_operacion">Tipo de operación:</label>
+    <select id="tipo_operacion" name="tipo_operacion">
+        <option value="alquilar">Alquilar</option>
+        <option value="comprar">Comprar</option>
+    </select>
+    <p>Tipo de propiedad <input type='text' name="tipo_propiedad"></p>
+    <input type='Submit' value='Buscar'>
+</form>
+{% endblock contenido %}
+
+{% block servicios %}
+{% endblock servicios %}

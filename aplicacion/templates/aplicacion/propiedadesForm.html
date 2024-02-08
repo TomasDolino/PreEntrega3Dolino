@@ -1,0 +1,40 @@
+{% extends 'aplicacion/home.html' %}
+
+{% block titulo %}
+    <style>
+        
+        .table thead th {
+            background-color: #FFD800; 
+            border: 1px solid black; 
+        }
+
+        
+        .table td, .table th {
+            border: 1px solid black; 
+        }
+
+        
+        .table tbody tr {
+            border-bottom: 1px solid black;  
+        }
+    </style>
+    <header class="masthead">
+        <div class="container">
+            <div class="masthead-subheading">¡Encuentra tu nuevo hogar!</div>
+            <div class="masthead-heading text-uppercase">Alquila tu casa ideal</div>
+            
+        </div>
+    </header>
+{% endblock titulo %}
+{% block contenido %}
+<form action ='' method='post'>
+    {% csrf_token %}
+    <table>
+        {{form.as_table}}
+    </table>
+    <input type='Submit' value='Enviar'>
+</form>
+{% endblock contenido %}
+
+{% block servicios %}
+{% endblock servicios %}
