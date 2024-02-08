@@ -1,71 +1,55 @@
 {% extends 'aplicacion/home.html' %}
 
 {% block titulo %}
-    <style>
+<style>
+    .table thead th {
+        background-color: #FFD800;
+        border: 1px solid black;
+    }
 
-        .table thead th {
-            background-color: #FFD800; 
-            border: 1px solid black; 
-        }
+    .table td, .table th {
+        border: 1px solid black;
+    }
 
-
-        .table td, .table th {
-            border: 1px solid black; 
-        }
-
-
-        .table tbody tr {
-            border-bottom: 1px solid black; 
-        }
-    </style>
-    <header class="masthead">
-        <div class="container">
-            <div class="masthead-subheading">¡No busques mas!</div>
-            <div class="masthead-heading text-uppercase">Compra la casa de tus sueños</div>
-
-        </div>
-    </header>
+    .table tbody tr {
+        border-bottom: 1px solid black;
+    }
+</style>
+<header class="masthead">
+    <div class="container">
+        <div class="masthead-subheading">¡No busques más!</div>
+        <div class="masthead-heading text-uppercase">Compra la casa de tus sueños</div>
+    </div>
+</header>
 {% endblock titulo %}
 
 {% block contenido %}
-
-    <table class="table table-striped">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Tipo de propiedad</th>
-                <th>Metros cuadrados</th>
-                <th>Precio</th>
-            </tr>
-        </thead>
-        <tbody>
-    {% for a in comprar  %}
-            <tr>
-                <td>{{ a.id}}</td>
-                <td>{{ a.tipo}}</td>
-                <td>{{ a.mt2}}</td>
-                <td>{{ a.precio}}</td>
-            </tr>
-    {% endfor %}
-        </tbody>
-    </table>
-    <h5>Agregar Nueva Propiedad</h5>
-    <form method="post">
-        {% csrf_token %}
-        <div>
-            <label for="tipo">Tipo de Propiedad:</label>
-            <input type="text" id="tipo" name="tipo" required>
-        </div>
-        <div>
-            <label for="mt2">Metros Cuadrados:</label>
-            <input type="number" id="mt2" name="mt2" required>
-        </div>
-        <div>
-            <label for="precio">Precio:</label>
-            <input type="number" id="precio" name="precio" required>
-        </div>
-        <button type="submit">Agregar</button>
-    </form>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Tipo de propiedad</th>
+            <th>Metros cuadrados</th>
+            <th>Precio</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for a in comprar %}
+        <tr>
+            <td>{{ a.id }}</td>
+            <td>{{ a.tipo }}</td>
+            <td>{{ a.mt2 }}</td>
+            <td>{{ a.precio }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+<h5>Agregar Nueva Propiedad</h5>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Agregar</button>
+</form>
 {% endblock contenido %}
 {% block servicios %}
 {% endblock servicios %}

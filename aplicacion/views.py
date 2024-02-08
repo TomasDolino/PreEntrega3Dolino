@@ -6,8 +6,16 @@ def home(request):
     return render(request,'aplicacion/home.html')
 
 def alquilar(request):
-    contexto={'alquilar':Alquilar.objects.all()}
-    return render(request,'aplicacion/alquilar.html', contexto)
+    if request.method == 'POST':
+        form = AlquilarForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('alquilar')
+    else:
+        form = AlquilarForm()
+    alquilar = Alquilar.objects.all()
+    return render(request, 'aplicacion/alquilar.html', {'alquilar': alquilar, 'form': form})
+
 
 def alquilar_agregar(request):
     if request.method == 'POST':
@@ -20,8 +28,15 @@ def alquilar_agregar(request):
     return render(request, 'tu_template_para_agregar.html', {'form': form})
 
 def comprar(request):
-    contexto={'comprar':Comprar.objects.all()}
-    return render(request,'aplicacion/comprar.html',contexto)
+    if request.method == 'POST':
+        form = ComprarForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('comprar')
+    else:
+        form = ComprarForm()
+    comprar = Comprar.objects.all()
+    return render(request, 'aplicacion/comprar.html', {'comprar': comprar, 'form': form})
 
 def tasar(request):
     contexto={'tasar':Tasar.objects.all()}
