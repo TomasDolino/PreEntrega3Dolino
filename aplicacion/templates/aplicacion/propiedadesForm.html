@@ -1,37 +1,37 @@
 {% extends 'aplicacion/home.html' %}
 
 {% block titulo %}
-    <style>
-        
-        .table thead th {
-            background-color: #FFD800; 
-            border: 1px solid black; 
-        }
-
-        
-        .table td, .table th {
-            border: 1px solid black; 
-        }
-
-        
-        .table tbody tr {
-            border-bottom: 1px solid black;  
-        }
-    </style>
-    <header class="masthead">
-        <div class="container">
-            <div class="masthead-subheading">¡Encuentra tu nuevo hogar!</div>
-            <div class="masthead-heading text-uppercase">Alquila tu casa ideal</div>
-            
-        </div>
-    </header>
+<!-- Estilos personalizados para la tabla -->
+<style>
+    .table thead th {
+        background-color: #FFD800; /* Color de fondo para las cabeceras de la tabla */
+        border: 1px solid black;
+    }
+    .table td, .table th {
+        border: 1px solid black; /* Bordes para las celdas de la tabla */
+    }
+    .table tbody tr {
+        border-bottom: 1px solid black; /* Borde inferior para las filas de la tabla */
+    }
+</style>
+<header class="masthead">
+    <div class="container">
+        <!-- Título y subtítulo de la página de formulario para encontrar o publicar propiedades -->
+        <div class="masthead-subheading">¡Encuentra tu nuevo hogar!</div>
+        <div class="masthead-heading text-uppercase">Alquila tu casa ideal</div>
+    </div>
+</header>
 {% endblock titulo %}
+
 {% block contenido %}
-<form action ='' method='post'>
+<!-- Formulario para enviar los datos de la propiedad -->
+<form action='' method='post'>
     {% csrf_token %}
+    <!-- Presentación del formulario como una tabla -->
     <table>
-        {{form.as_table}}
+        {{ form.as_table }}
     </table>
+    <!-- Botón para enviar el formulario -->
     <input type='Submit' value='Enviar'>
 </form>
 {% endblock contenido %}

@@ -1,0 +1,37 @@
+{% extends 'aplicacion/home.html' %} 
+
+{% block titulo %}
+<style>
+    .table thead th {
+        background-color: #FFD800; /* Color de fondo para las cabeceras de la tabla */
+        border: 1px solid black;
+    }
+    .table td, .table th {
+        border: 1px solid black; /* Bordes para las celdas de la tabla */
+    }
+    .table tbody tr {
+        border-bottom: 1px solid black; /* Borde inferior para las filas de la tabla */
+    }
+</style>
+<header class="masthead">
+    <div class="container">
+        <!-- Título y subtítulo de la página de edición de propiedades para compra -->
+        <div class="masthead-subheading">¡Edita los detalles de tu propiedad!</div>
+        <div class="masthead-heading text-uppercase">Asegura que tu casa se muestre perfecta</div>
+    </div>
+</header>
+{% endblock titulo %}
+
+{% block contenido %}
+<div class="container">
+    <h2>Editar Propiedad</h2>
+    <!-- Formulario para editar los detalles de una propiedad específica -->
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }} <!-- Muestra el formulario como párrafos -->
+        <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+        <!-- Botón para cancelar la edición y regresar a la lista de propiedades -->
+        <a href="{% url 'comprar' %}" class="btn btn-secondary">Cancelar</a> <!-- Corrección: Debe redirigir a 'comprar', no 'alquilar' -->
+    </form>
+</div>
+{% endblock contenido %}

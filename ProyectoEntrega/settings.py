@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/5.0/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.0/ref/settings/
 """
-
+import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -28,8 +28,9 @@ DEBUG = True
 ALLOWED_HOSTS = []
 
 
-# Application definition
 
+
+# Aplicaciones instaladas en el proyecto. 'aplicacion' y 'accounts' son apps personalizadas.
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -37,7 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'aplicacion'
+    'aplicacion',  # App personalizada para la lógica principal del proyecto.
+    'accounts',  # App personalizada para la gestión de usuarios.
 ]
 
 MIDDLEWARE = [
@@ -70,6 +72,9 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'ProyectoEntrega.wsgi.application'
 
+# URL de inicio de sesión personalizada para redirigir a los usuarios no autenticados.
+LOGIN_URL = '/accounts/login/'
+
 
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
@@ -77,7 +82,8 @@ WSGI_APPLICATION = 'ProyectoEntrega.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'propiedades.db',
+        'NAME': BASE_DIR / 'propiedades.db', # Nombre de archivo de la base de datos.
+
     }
 }
 
@@ -116,7 +122,11 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
+# Configuración de archivos estáticos y multimedia.
 STATIC_URL = 'static/'
+MEDIA_URL = '/media/'  # URL base para servir archivos multimedia.
+MEDIA_ROOT = BASE_DIR / 'media'  # Directorio raíz donde se almacenan los archivos subidos.
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field

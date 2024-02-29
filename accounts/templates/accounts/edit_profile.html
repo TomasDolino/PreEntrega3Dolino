@@ -1,0 +1,39 @@
+{% extends 'aplicacion/home.html' %}  <!-- Hereda la estructura base de home.html -->
+
+{% block titulo %}
+<style>
+    /* Estilos específicos para esta página */
+    .table thead th {
+        background-color: #FFD800; /* Color de fondo para los encabezados de tabla */
+        border: 1px solid black; /* Borde de los encabezados */
+    }
+
+    .table td, .table th {
+        border: 1px solid black; /* Borde de las celdas y encabezados */
+    }
+
+    .table tbody tr {
+        border-bottom: 1px solid black; /* Borde inferior de las filas */
+    }
+</style>
+<header class="masthead">
+    <div class="container">
+        <div class="masthead-subheading">¡Bienvenido!</div> <!-- Subtítulo de la página -->
+        <div class="masthead-heading text-uppercase">{{ user.username }}</div> <!-- Título principal de la página mostrando el nombre de usuario -->
+    </div>
+</header>
+{% endblock titulo %}
+
+{% block contenido %}
+<div class="container">
+    <h2>Editar Perfil</h2> <!-- Título de la sección -->
+    <form method="post" enctype="multipart/form-data"> <!-- Formulario para editar el perfil con soporte para subida de archivos -->
+        {% csrf_token %} <!-- Token CSRF para seguridad del formulario -->
+        {{ user_form.as_p }} <!-- Muestra el formulario de usuario como párrafos -->
+        {{ profile_form.as_p }} <!-- Muestra el formulario de perfil como párrafos -->
+        <button type="submit">Guardar</button> <!-- Botón para enviar el formulario -->
+    </form>
+</div>
+{% endblock contenido %}
+{% block servicios %}
+{% endblock servicios %}

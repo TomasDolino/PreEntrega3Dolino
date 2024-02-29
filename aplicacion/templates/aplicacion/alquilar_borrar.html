@@ -1,0 +1,13 @@
+{% extends 'aplicacion/alquilar.html' %} 
+{% block contenido %}
+<div class="container">
+    <h2>¿Estás seguro de que quieres eliminar esta propiedad?</h2> <!-- Mensaje de confirmación para la acción de borrar -->
+    <form method="post">
+        {% csrf_token %} <!-- Token CSRF para seguridad del formulario -->
+        <button type="submit" class="btn btn-danger">Eliminar</button> <!-- Botón para confirmar la eliminación -->
+        <a href="{% url 'alquilar' %}" class="btn btn-secondary">Cancelar</a> <!-- Botón para cancelar la acción y volver a la lista de propiedades -->
+    </form>
+</div>
+{% endblock %}
+{% block servicios %}
+{% endblock servicios %}

@@ -1,0 +1,37 @@
+{% extends 'aplicacion/alquilar.html' %} 
+{% block titulo %}
+<style>
+    /* Estilos específicos para esta página, aunque en este caso se repiten los de la plantilla base */
+    .table thead th {
+        background-color: #FFD800; /* Color amarillo característico del sitio */
+        border: 1px solid black;
+    }
+
+    .table td, .table th {
+        border: 1px solid black;
+    }
+
+    .table tbody tr {
+        border-bottom: 1px solid black;
+    }
+</style>
+<header class="masthead">
+    <div class="container">
+        <!-- Título y subtítulo específicos para la sección de edición de propiedades -->
+        <div class="masthead-subheading">¡Encuentra tu nuevo hogar!</div>
+        <div class="masthead-heading text-uppercase">Alquila tu casa ideal</div>
+    </div>
+</header>
+{% endblock titulo %}
+
+{% block contenido %}
+<div class="container">
+    <h2>Editar Propiedad</h2> <!-- Título de la sección para editar una propiedad existente -->
+    <form method="post">
+        {% csrf_token %} <!-- Token CSRF para seguridad del formulario -->
+        {{ form.as_p }} <!-- Muestra el formulario de edición como párrafos -->
+        <button type="submit" class="btn btn-primary">Guardar Cambios</button> <!-- Botón para guardar los cambios realizados -->
+        <a href="{% url 'alquilar' %}" class="btn btn-secondary">Cancelar</a> <!-- Botón para cancelar la edición y volver a la lista de propiedades -->
+    </form>
+</div>
+{% endblock contenido %}

@@ -1,22 +1,22 @@
 {% extends 'aplicacion/home.html' %}
 
 {% block titulo %}
+<!-- Estilos personalizados para la tabla -->
 <style>
     .table thead th {
-        background-color: #FFD800;
+        background-color: #FFD800; /* Color de fondo para las cabeceras de la tabla */
         border: 1px solid black;
     }
-
     .table td, .table th {
-        border: 1px solid black;
+        border: 1px solid black; /* Bordes para las celdas de la tabla */
     }
-
     .table tbody tr {
-        border-bottom: 1px solid black;
+        border-bottom: 1px solid black; /* Borde inferior para las filas de la tabla */
     }
 </style>
 <header class="masthead">
     <div class="container">
+        <!-- Título y subtítulo de la página de compra de propiedades -->
         <div class="masthead-subheading">¡No busques más!</div>
         <div class="masthead-heading text-uppercase">Compra la casa de tus sueños</div>
     </div>
@@ -24,26 +24,34 @@
 {% endblock titulo %}
 
 {% block contenido %}
+<!-- Tabla para mostrar las propiedades disponibles para comprar -->
 <table class="table table-striped">
     <thead>
         <tr>
-            <th>Id</th>
-            <th>Tipo de propiedad</th>
-            <th>Metros cuadrados</th>
+            <th>ID</th>
+            <th>Tipo de Propiedad</th>
+            <th>Metros Cuadrados</th>
             <th>Precio</th>
+            <th>Acciones</th> <!-- Encabezado para las acciones como editar o borrar -->
         </tr>
     </thead>
     <tbody>
-        {% for a in comprar %}
+        {% for propiedad in comprar %}
         <tr>
-            <td>{{ a.id }}</td>
-            <td>{{ a.tipo }}</td>
-            <td>{{ a.mt2 }}</td>
-            <td>{{ a.precio }}</td>
+            <td>{{ propiedad.id }}</td>
+            <td>{{ propiedad.tipo }}</td>
+            <td>{{ propiedad.mt2 }}</td>
+            <td>{{ propiedad.precio }}</td>
+            <td>
+                <!-- Botones para editar y borrar propiedades -->
+                <a href="{% url 'comprar_editar' propiedad.id %}" class="btn btn-sm btn-primary">Editar</a>
+                <a href="{% url 'comprar_borrar' propiedad.id %}" class="btn btn-sm btn-danger">Borrar</a>
+            </td>
         </tr>
         {% endfor %}
     </tbody>
 </table>
+<!-- Formulario para agregar una nueva propiedad -->
 <h5>Agregar Nueva Propiedad</h5>
 <form method="post">
     {% csrf_token %}

@@ -1,68 +1,56 @@
 {% extends 'aplicacion/home.html' %}
 
 {% block titulo %}
-    <style>
-
-        .table thead th {
-            background-color: #FFD800; 
-            border: 1px solid black; 
-        }
-
-        .table td, .table th {
-            border: 1px solid black; 
-        }
-
-    
-        .table tbody tr {
-            border-bottom: 1px solid black; 
-        }
-    </style>
-    <header class="masthead">
-        <div class="container">
-            <div class="masthead-subheading">¿Queres vender o alquilar tu casa?</div>
-            <div class="masthead-heading text-uppercase">Tasacion al instante</div>
-
-        </div>
-    </header>
+<!-- Estilos personalizados para la tabla y la cabecera -->
+<style>
+    .table thead th {
+        background-color: #FFD800; /* Color de fondo de la cabecera de la tabla */
+        border: 1px solid black;
+    }
+    .table td, .table th {
+        border: 1px solid black; /* Bordes de las celdas de la tabla */
+    }
+    .table tbody tr {
+        border-bottom: 1px solid black; /* Borde inferior de las filas de la tabla */
+    }
+</style>
+<header class="masthead">
+    <div class="container">
+        <!-- Subtítulo y título de la sección de tasación -->
+        <div class="masthead-subheading">¿Quieres vender o alquilar tu casa?</div>
+        <div class="masthead-heading text-uppercase">Tasación al instante</div>
+    </div>
+</header>
 {% endblock titulo %}
 
 {% block contenido %}
-
-    <table class="table table-striped">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Tipo de propiedad</th>
-                <th>Metros cuadrados</th>
-            </tr>
-        </thead>
-        <tbody>
-    {% for a in alquilar  %}
-            <tr>
-                <td>{{ a.id}}</td>
-                <td>{{ a.tipo}}</td>
-                <td>{{ a.mt2}}</td>
-            </tr>
+<!-- Sección para mostrar mensajes de éxito o error -->
+{% if messages %}
+<div class="messages">
+    {% for message in messages %}
+    <!-- Los mensajes se muestran en rojo -->
+    <div class="{{ message.tags }}" style="color: red;">{{ message }}</div>
     {% endfor %}
-        </tbody>
-    </table>
-    <h5>Agregar Nueva Propiedad</h5>
-    <form method="post">
-        {% csrf_token %}
-        <div>
-            <label for="tipo">Tipo de Propiedad:</label>
-            <input type="text" id="tipo" name="tipo" required>
-        </div>
-        <div>
-            <label for="mt2">Metros Cuadrados:</label>
-            <input type="number" id="mt2" name="mt2" required>
-        </div>
-        <div>
-            <label for="precio">Precio:</label>
-            <input type="number" id="precio" name="precio" required>
-        </div>
-        <button type="submit">Agregar</button>
-    </form>
+</div>
+{% endif %}
+<!-- Formulario para solicitar la tasación de una propiedad -->
+<h5>Tasar Nueva Propiedad</h5>
+<form method="post">
+    {% csrf_token %}
+    <div>
+        <label for="tipo">Tipo de Propiedad:</label>
+        <input type="text" id="tipo" name="tipo" required>
+    </div>
+    <div>
+        <label for="mt2">Metros Cuadrados:</label>
+        <input type="number" id="mt2" name="mt2" required>
+    </div>
+    <div>
+        <label for="ambientes">Ambientes:</label>
+        <input type="number" id="ambientes" name="ambientes" required>
+    </div>
+    <button type="submit">Enviar</button>
+</form>
 {% endblock contenido %}
 
 {% block servicios %}

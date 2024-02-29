@@ -1,0 +1,34 @@
+{% extends 'aplicacion/home.html' %} 
+{% block titulo %}
+<style>
+    /* Estilos específicos para la sección Sobre mí */
+    .table thead th {
+        background-color: #FFD800;
+        border: 1px solid black;
+    }
+
+    .table td, .table th {
+        border: 1px solid black;
+    }
+
+    .table tbody tr {
+        border-bottom: 1px solid black;
+    }
+</style>
+<header class="masthead">
+    <div class="container">
+        <div class="masthead-subheading">Sobre mí</div> <!-- Subtítulo de la sección -->
+        <div class="masthead-heading text-uppercase">Tomas Dolino</div> <!-- Título principal de la sección -->
+        <div class="container mt-4">
+            <p style="text-align: justify; font-weight: bold; font-style: italic; text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;">
+                "Soy Tomás Dolino, y durante años, mi carrera se centró en el sector turístico. Sin embargo, decidí dar un giro hacia nuevas aspiraciones, motivado por el deseo de trabajar de manera remota y continuar explorando el mundo. Este anhelo me llevó a iniciar mis estudios en Python, siguiendo las recomendaciones de amigos y colegas. Pronto, este viaje me introdujo a apasionantes áreas de la tecnología, especialmente al análisis de datos. Hoy, mi enfoque está en dominar el análisis de datos, comprometido con ampliar mis habilidades y lograr mis objetivos profesionales y personales."
+            </p> 
+        </div>
+    </div>
+</header>
+{% endblock titulo %}
+
+{% block contenido %}
+{% endblock contenido %}
+{% block servicios %}
+{% endblock servicios %}

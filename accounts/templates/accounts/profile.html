@@ -1,0 +1,38 @@
+{% extends 'aplicacion/home.html' %}  <!-- Hereda la estructura base de home.html -->
+
+{% block titulo %}
+<style>
+    /* Estilos específicos para esta página */
+    .table thead th {
+        background-color: #FFD800; /* Color de fondo para los encabezados de tabla */
+        border: 1px solid black; /* Borde de los encabezados */
+    }
+
+    .table td, .table th {
+        border: 1px solid black; /* Borde de las celdas y encabezados */
+    }
+
+    .table tbody tr {
+        border-bottom: 1px solid black; /* Borde inferior de las filas */
+    }
+</style>
+<header class="masthead">
+    <div class="container">
+        <div class="masthead-subheading">¡Bienvenido!</div> <!-- Subtítulo de la página -->
+        <div class="masthead-heading text-uppercase">{{ user.username }}</div> <!-- Muestra el nombre de usuario -->
+        <a href="{% url 'edit_profile' %}" class="btn btn-primary">Editar Perfil</a> <!-- Enlace para editar el perfil -->
+    </div>
+</header>
+{% endblock titulo %}
+
+{% block contenido %}
+<div class="profile">
+    <h2>Perfil de Usuario</h2> <!-- Título de la sección -->
+    {% if user.is_authenticated %} <!-- Verifica si el usuario está autenticado -->
+    <p>Nombre: {{ user.profile.name }}</p> <!-- Muestra el nombre del usuario -->
+    <p>Email: {{ user.profile.email }}</p> <!-- Muestra el email del usuario -->
+    {% endif %}
+</div>
+{% endblock contenido %}
+{% block servicios %}
+{% endblock servicios %}

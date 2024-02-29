@@ -1,0 +1,17 @@
+{% extends 'aplicacion/home.html' %} 
+{% block titulo %}
+<title>Eliminar Propiedad</title>
+{% endblock titulo %}
+
+{% block contenido %}
+<div class="container">
+    <!-- Mensaje de confirmación para eliminar una propiedad -->
+    <h2>¿Estás seguro de que quieres eliminar esta propiedad?</h2>
+    <form method="post">
+        {% csrf_token %}
+        <!-- Botón para confirmar la eliminación -->
+        <button type="submit" class="btn btn-danger">Eliminar</button>
+        <!-- Botón para cancelar la operación y regresar a la lista de propiedades de compra -->
+        <a href="{% url 'comprar' %}" class="btn btn-secondary">Cancelar</a> 
+</div>
+{% endblock %}

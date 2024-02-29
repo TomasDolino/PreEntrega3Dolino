@@ -1,8 +1,7 @@
-{% extends 'aplicacion/home.html' %}
-
+{% extends 'aplicacion/home.html' %} 
 {% block titulo %}
 <style>
-
+    /* Estilos para el formulario de búsqueda */
     form {
         background-color: #f8f9fa; 
         padding: 20px;
@@ -11,20 +10,23 @@
         margin-bottom: 20px;
     }
 
+    /* Estilos para los elementos del formulario */
     form label, form select, form input[type="text"], form input[type="submit"] {
         display: block;
         width: 100%;
         margin-bottom: 10px;
     }
 
+    /* Estilos para los campos de selección e input */
     form select, form input[type="text"] {
         padding: 10px;
         border: 1px solid #ccc;
         border-radius: 4px;
     }
 
+    /* Estilos para el botón de envío */
     form input[type="submit"] {
-        background-color: #FFD800;
+        background-color: #FFD800; /* Color amarillo característico del sitio */
         color: white;
         padding: 10px 15px;
         border: none;
@@ -32,29 +34,32 @@
         cursor: pointer;
     }
 
+    /* Cambio de color del botón al pasar el mouse */
     form input[type="submit"]:hover {
         background-color: #333333;
     }
 </style>
-    <header class="masthead">
-        <div class="container">
-            <div class="masthead-heading text-uppercase">¡Encuentra lo que estes buscando!</div>
-        
-        </div>
-    </header>
+<header class="masthead">
+    <div class="container">
+        <!-- Título de la sección de búsqueda -->
+        <div class="masthead-heading text-uppercase">¡Encuentra lo que estás buscando!</div>
+    </div>
+</header>
 {% endblock titulo %}
+
 {% block contenido %}
+<!-- Formulario para realizar búsquedas de propiedades -->
 <form action ="{% url 'buscarOportunidad' %}" method='get'>
     {% csrf_token %}
+    <!-- Selección del tipo de operación (alquilar o comprar) -->
     <label for="tipo_operacion">Tipo de operación:</label>
     <select id="tipo_operacion" name="tipo_operacion">
         <option value="alquilar">Alquilar</option>
         <option value="comprar">Comprar</option>
     </select>
+    <!-- Campo para especificar el tipo de propiedad -->
     <p>Tipo de propiedad <input type='text' name="tipo_propiedad"></p>
+    <!-- Botón para enviar la búsqueda -->
     <input type='Submit' value='Buscar'>
 </form>
 {% endblock contenido %}
-
-{% block servicios %}
-{% endblock servicios %}

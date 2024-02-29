@@ -1,9 +1,9 @@
-{% extends 'aplicacion/home.html' %}
-
+{% extends 'aplicacion/home.html' %} 
 {% block titulo %}
 <style>
+    /* Estilos para la tabla que muestra las propiedades disponibles para alquilar */
     .table thead th {
-        background-color: #FFD800;
+        background-color: #FFD800; /* Color amarillo característico del sitio */
         border: 1px solid black;
     }
 
@@ -17,6 +17,7 @@
 </style>
 <header class="masthead">
     <div class="container">
+        <!-- Título y subtítulo de la sección de alquiler -->
         <div class="masthead-subheading">¡Encuentra tu nuevo hogar!</div>
         <div class="masthead-heading text-uppercase">Alquila tu casa ideal</div>
     </div>
@@ -24,32 +25,38 @@
 {% endblock titulo %}
 
 {% block contenido %}
+<!-- Tabla para mostrar las propiedades disponibles para alquilar -->
 <table class="table table-striped">
     <thead>
         <tr>
-            <th>Id</th>
-            <th>Tipo de propiedad</th>
-            <th>Metros cuadrados</th>
-            <th>Precio</th>
+            <th>ID</th> <!-- Identificador de la propiedad -->
+            <th>Tipo de propiedad</th> <!-- Tipo de la propiedad (ej. apartamento, casa) -->
+            <th>Metros cuadrados</th> <!-- Tamaño de la propiedad -->
+            <th>Precio</th> <!-- Precio de alquiler de la propiedad -->
+            <th>Acciones</th> <!-- Columna para acciones como editar o borrar -->
         </tr>
     </thead>
     <tbody>
-        {% for a in alquilar %}
+        {% for propiedad in alquilar %}
         <tr>
-            <td>{{ a.id }}</td>
-            <td>{{ a.tipo }}</td>
-            <td>{{ a.mt2 }}</td>
-            <td>{{ a.precio }}</td>
+            <td>{{ propiedad.id }}</td>
+            <td>{{ propiedad.tipo }}</td>
+            <td>{{ propiedad.mt2 }}</td>
+            <td>{{ propiedad.precio }}</td>
+            <td>
+                <!-- Botones para editar y borrar propiedades, asegurándose de pasar el ID correcto -->
+                <a href="{% url 'alquilar_editar' propiedad.id %}" class="btn btn-sm btn-primary">Editar</a>
+                <a href="{% url 'alquilar_borrar' propiedad.id %}" class="btn btn-sm btn-danger">Borrar</a>
+            </td>
         </tr>
         {% endfor %}
     </tbody>
 </table>
+<!-- Formulario para agregar una nueva propiedad al listado de alquiler -->
 <h5>Agregar Nueva Propiedad</h5>
 <form method="post">
     {% csrf_token %}
-    {{ form.as_p }}
+    {{ form.as_p }} <!-- Muestra el formulario como párrafos -->
     <button type="submit">Agregar</button>
 </form>
 {% endblock contenido %}
-{% block servicios %}
-{% endblock servicios %}
